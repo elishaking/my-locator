@@ -1,7 +1,6 @@
 const router = require('express').Router();
+const { getLocations } = require('../controllers/locations');
 
-router.get('/', (req, res) => {
-  res.send('Locations');
-});
+router.get('/', getLocations);
 
 module.exports = router;
