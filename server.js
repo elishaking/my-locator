@@ -9,9 +9,9 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
-server.get('/api/v1/locations', (req, res) => {
-  res.send('Locations');
-})
+const locations = require('./routes/locations');
+
+server.use('/api/v1/locations', locations);
 
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
