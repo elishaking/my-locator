@@ -53,7 +53,7 @@ export default class Home extends Component {
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      zoom: 9,
+      zoom: 3,
       center: mapCenter
     });
 

@@ -42,8 +42,8 @@ export default class Add extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.addStore}>
+      <div className="add">
+        <form className="form" onSubmit={this.addStore}>
           <input
             type="text"
             name="id"
@@ -56,7 +56,7 @@ export default class Add extends Component {
             placeholder="address"
             onChange={this.onChange} />
 
-          <button type="submit">Add</button>
+          <button className="btn" type="submit">Add</button>
         </form>
       </div>
     );
