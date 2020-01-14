@@ -3,10 +3,10 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-const connectDB = require('./config/db');
-const checkFile = require('./utils/checkFile');
+const connectDB = require('./src/config/db');
+const checkFile = require('./src/utils/checkFile');
 
-dotenv.config({ path: './config/config.env' });
+dotenv.config({ path: './src/config/config.env' });
 
 connectDB();
 
@@ -14,7 +14,7 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
-const locations = require('./routes/locations');
+const locations = require('./src/routes/locations');
 
 server.use('/api/v1/locations', locations);
 

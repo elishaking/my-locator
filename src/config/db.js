@@ -7,6 +7,7 @@ const connectDB = () => {
     useFindAndModify: false,
     useUnifiedTopology: true
   })
+    // @ts-ignore
     .then((conn) => console.log(`MongoDB connected: ${conn.connection.host}`))
     .catch((err) => {
       console.error(err);
