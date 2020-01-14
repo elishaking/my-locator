@@ -23,6 +23,36 @@ const getLocations = (req, res) => {
     });
 }
 
+/**
+ * @description Create a new location
+ * @access Public
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+const addLocation = (req, res) => {
+  Location.create(req.body)
+    .then((location) => res.status(200).json({
+      success: true,
+      data: location
+    }))
+    .catch((err) => {
+      console.error(err);
+
+      if (err.code === 11000) {
+        return res.status(400).json({
+          success: false,
+          error: "This location already exists"
+        });
+      }
+
+      res.status(500).json({
+        success: false,
+        error: "Server Error"
+      });
+    });
+}
+
 module.exports = {
-  getLocations
+  getLocations,
+  addLocation
 };
