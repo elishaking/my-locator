@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Spinner from '../Spinner';
 
 export default class Add extends Component {
   state = {
     name: '',
-    address: ''
+    address: '',
+    loading: false
   };
 
   onChange = (e) => {
@@ -14,6 +16,10 @@ export default class Add extends Component {
 
   addStore = async (e) => {
     e.preventDefault();
+
+    this.setState({
+      loading: true
+    });
 
     const { name, address } = this.state;
     if (name === '' || address === '')
@@ -31,6 +37,10 @@ export default class Add extends Component {
       body: JSON.stringify(newLocation)
     });
 
+    this.setState({
+      loading: false
+    });
+
     if (res.status === 400) {
       // location exists
       return alert('Store already exists');
@@ -41,6 +51,8 @@ export default class Add extends Component {
   };
 
   render() {
+    const { loading } = this.state;
+
     return (
       <div className="add">
         <form className="form" onSubmit={this.addStore}>
@@ -57,6 +69,10 @@ export default class Add extends Component {
             onChange={this.onChange} />
 
           <button className="btn" type="submit">Add</button>
+
+          {
+            loading && <Spinner />
+          }
         </form>
       </div>
     );
