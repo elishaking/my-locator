@@ -1,0 +1,18 @@
+.container {
+  padding: 2em 10vw;
+
+  header {
+    text-align: center;
+    margin-bottom: 2em;
+
+    h1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        margin-left: 0.3em;
+      }
+    }
+  }
+}
