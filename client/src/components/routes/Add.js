@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Add extends Component {
   state = {
-    id: '',
+    name: '',
     address: ''
   };
 
@@ -15,11 +15,11 @@ export default class Add extends Component {
   addStore = async (e) => {
     e.preventDefault();
 
-    const { id, address } = this.state;
-    if (id === '' || address === '')
+    const { name, address } = this.state;
+    if (name === '' || address === '')
       return alert('All fields are required');
     const newLocation = {
-      id,
+      name,
       address
     };
 
@@ -32,11 +32,11 @@ export default class Add extends Component {
     });
 
     if (res.status === 400) {
-      // store exists
+      // location exists
       return alert('Store already exists');
     }
 
-    alert('Store added');
+    alert('Location added');
     this.props.history.replace('/');
   };
 
@@ -46,8 +46,8 @@ export default class Add extends Component {
         <form className="form" onSubmit={this.addStore}>
           <input
             type="text"
-            name="id"
-            placeholder="location id"
+            name="name"
+            placeholder="name"
             onChange={this.onChange} />
 
           <input

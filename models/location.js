@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const geocoder = require('../utils/geocoder');
 
 const LocationSchema = new mongoose.Schema({
-  id: {
+  name: {
     type: String,
     required: true,
     unique: true,
     trim: true,
-    maxlength: [10, 'Location ID must be less than 10 characters']
+    maxlength: [50, 'Location Name must be less than 50 characters']
   },
   address: {
     type: String,

@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'boxicons';
 import './App.scss';
 
-import Home from './routes/Home';
-import Add from './routes/Add';
+import Home from './components/routes/Home';
+import Add from './components/routes/Add';
 
 function App() {
   return (
