@@ -34,10 +34,27 @@ export default class Home extends Component {
     this.loadMap(locations);
   };
 
+  getLocationsCenter = (locations) => {
+    const sum = locations.reduce((total, loc) => {
+      const coord = loc.geometry.coordinates;
+      total[0] += coord[0]
+      total[1] += coord[1];
+      return total;
+    }, [0, 0]);
+
+    const N = locations.length;
+
+    return [sum[0] / N, sum[1] / N];
+  };
+
   loadMap = (locations) => {
+    const mapCenter = this.getLocationsCenter(locations);
+
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11'
+      style: 'mapbox://styles/mapbox/streets-v11',
+      zoom: 9,
+      center: mapCenter
     });
 
     map.on('load', () => {
