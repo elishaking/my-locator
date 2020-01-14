@@ -11,6 +11,7 @@ connectDB();
 const server = express();
 server.use(express.json());
 server.use(cors());
+server.use(express.static(path.join(__dirname, 'client', 'build')));
 
 const locations = require('./routes/locations');
 
