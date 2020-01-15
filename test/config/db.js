@@ -1,24 +1,20 @@
-const Mockgoose = require('mockgoose').Mockgoose;
 const mongoose = require('mongoose');
-const DB_URI = 'mongodb://localhost:27017/my_locator';
-
-const mockgoose = new Mockgoose(mongoose);
+const DB_URI = process.env.MONGO_URI;
 
 const connect = () => new Promise((resolve, reject) => {
-  mockgoose.prepareStorage()
-    .then(() => {
-      mongoose.connect(DB_URI, {
-        useNewUrlParser: true,
-        useCreateIndex: true
-      }).then((_, err) => {
-        console.log('Mock database connected');
+  mongoose.connect(DB_URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  }).then((_, err) => {
+    console.log('Mock database connected');
 
-        if (err)
-          return reject(err);
+    if (err)
+      return reject(err);
 
-        resolve();
-      });
-    });
+    resolve();
+  });
 });
 
 const close = () => {
