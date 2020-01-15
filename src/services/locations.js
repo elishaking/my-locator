@@ -3,6 +3,7 @@ const ResponseUtil = require('../utils/response');
 
 /**
  * @description GET all locations from database
+ * @returns {Promise<{success: boolean, statusCode: number, message: string, data?: any}>}
  */
 const findLocations = () => new Promise((resolve) => {
   Location.find()
@@ -28,6 +29,7 @@ const findLocations = () => new Promise((resolve) => {
 
 /**
  * @description Create a new location in the database
+ * @returns {Promise<{success: boolean, statusCode: number, message: string, data?: any}>}
  */
 const createLocation = (locationData) => new Promise((resolve) => {
   Location.create(locationData)

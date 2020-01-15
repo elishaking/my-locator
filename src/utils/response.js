@@ -17,7 +17,7 @@ const ResponseUtil =
 
   /**
    * @param {express.Response} res
-   * @param {{success: string, statusCode: number, message: string, data?: any}} responseData
+   * @param {{success: boolean, statusCode: number, message: string, data?: any}} responseData
    */
   sendResponse: (res, responseData) => {
     res.status(responseData.statusCode)
