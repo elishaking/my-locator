@@ -17,6 +17,7 @@
     "node-geocoder": "^3.25.0"
   },
   "devDependencies": {
-    "mockgoose": "^8.0.4"
+    "mockgoose": "^8.0.4",
+    "jest": "^24.9.0"
   }
 }
