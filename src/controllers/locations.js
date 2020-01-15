@@ -4,7 +4,7 @@ const LocationService = require('../services/locations');
 const ResponseUtil = require('../utils/response');
 
 /**
- * @description GET all locations
+ * @description GET all locations and send response
  * @access Public
  * @param {express.Request} req
  * @param {express.Response} res
@@ -18,7 +18,7 @@ const getLocations = (req, res) => {
 }
 
 /**
- * @description Create a new location
+ * @description Create a new location and send response
  * @access Public
  * @param {express.Request} req
  * @param {express.Response} res

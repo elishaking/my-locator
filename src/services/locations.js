@@ -1,6 +1,9 @@
 const Location = require('../models/location');
 const ResponseUtil = require('../utils/response');
 
+/**
+ * @description GET all locations from database
+ */
 const findLocations = () => new Promise((resolve) => {
   Location.find()
     .then((locations) => resolve(ResponseUtil
@@ -23,6 +26,9 @@ const findLocations = () => new Promise((resolve) => {
     });
 });
 
+/**
+ * @description Create a new location in the database
+ */
 const createLocation = (locationData) => new Promise((resolve) => {
   Location.create(locationData)
     .then((location) => resolve(ResponseUtil
