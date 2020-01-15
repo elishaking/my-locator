@@ -1,7 +1,7 @@
 const Location = require('../models/location');
 const ResponseUtil = require('../utils/response');
 
-const findLocations = () => new Promise((resolve, reject) => {
+const findLocations = () => new Promise((resolve) => {
   Location.find()
     .then((locations) => resolve(ResponseUtil
       .createResponseData(
@@ -14,7 +14,7 @@ const findLocations = () => new Promise((resolve, reject) => {
     .catch((err) => {
       console.error(err);
 
-      reject(ResponseUtil
+      resolve(ResponseUtil
         .createResponseData(
           false,
           500,
@@ -23,6 +23,39 @@ const findLocations = () => new Promise((resolve, reject) => {
     });
 });
 
+const createLocation = (locationData) => new Promise((resolve) => {
+  Location.create(locationData)
+    .then((location) => resolve(ResponseUtil
+      .createResponseData(
+        true,
+        200,
+        "Location Created",
+        location
+      )
+    ))
+    .catch((err) => {
+      console.error(err);
+
+      const statusAndMessage = {
+        code: 500,
+        message: "Server Error"
+      };
+      if (err.code === 11000) {
+        statusAndMessage.code = 400;
+        statusAndMessage.message = "This location already exists";
+      }
+
+      resolve(ResponseUtil
+        .createResponseData(
+          false,
+          statusAndMessage.code,
+          statusAndMessage.message
+        )
+      );
+    });
+});
+
 module.exports = {
-  findLocations
+  findLocations,
+  createLocation
 };
