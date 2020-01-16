@@ -1,5 +1,7 @@
-const dotenv = require('dotenv');
-dotenv.config({ path: './test/config/config.env' });
+if (process.env.NODE_ENV !== 'CI') {
+  const dotenv = require('dotenv');
+  dotenv.config({ path: './test/config/config.env' });
+}
 
 const db = require('../../config/db');
 const Location = require('../../../src/models/location');
