@@ -1,1 +1,1 @@
-# my-locator
+# my-locator &middot; [![CircleCI Status](https://circleci.com/gh/elishaking/my-locator.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/elishaking/my-locator) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/elishaking/my-locator/blob/master/LICENSE)
