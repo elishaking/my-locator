@@ -28,6 +28,7 @@ server.get('*', (req, res) => {
 });
 
 const PORT = process.env.PORT || 8000;
-server.listen(PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
+if (process.env.NODE_ENV !== 'test')
+  server.listen(PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
 
 module.exports = server;
