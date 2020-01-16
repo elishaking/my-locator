@@ -29,7 +29,9 @@ describe('Location Service Unit Test', () => {
 
         const firstLocation = data[0];
         expect(firstLocation._id).not.toBeNull();
+        // @ts-ignore
         expect(firstLocation.name).toEqual(locationModel.name);
+        // @ts-ignore
         expect(firstLocation.address).toEqual(locationModel.address);
 
         done();
@@ -43,7 +45,9 @@ describe('Location Service Unit Test', () => {
       .then(() => LocationService.createLocation(location))
       .then(({ data }) => {
         expect(data._id).not.toBeNull();
+        // @ts-ignore
         expect(data.name).toEqual(locationModel.name);
+        // @ts-ignore
         expect(data.address).toEqual(locationModel.address);
 
         done();
@@ -56,6 +60,7 @@ describe('Location Service Unit Test', () => {
     Location.deleteMany({})
       .then(() => LocationService.createLocation(location))
       .then(() => LocationService.createLocation(location))
+      // @ts-ignore
       .then(({ success, statusCode, data }) => {
         // expect(data._id).not.toBeNull();
         expect(success).toBe(false);
@@ -70,6 +75,7 @@ describe('Location Service Unit Test', () => {
 
     Location.deleteMany({})
       .then(() => LocationService.createLocation(invalidLocation))
+      // @ts-ignore
       .then(({ success, statusCode, data }) => {
         expect(success).toBe(false);
         expect(statusCode).toEqual(500);
