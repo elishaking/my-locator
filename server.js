@@ -6,10 +6,11 @@ const cors = require('cors');
 const connectDB = require('./src/config/db');
 const checkFile = require('./src/utils/checkFile');
 
-if (process.env.NODE_ENV !== 'test')
+if (process.env.NODE_ENV !== 'test') {
   dotenv.config({ path: './src/config/config.env' });
 
-connectDB();
+  connectDB();
+}
 
 const server = express();
 server.use(express.json());

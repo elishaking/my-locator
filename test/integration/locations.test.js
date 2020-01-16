@@ -2,15 +2,31 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './test/config/config.env' });
 const request = require('supertest');
 
+const db = require('../config/db');
 const server = require('../../server');
 const locationTestData = require('../data/location-data');
 const Location = require('../../src/models/location');
 
 describe('Locations Controller Integration Test', () => {
+  beforeAll((done) => {
+    db.connect()
+      .then(() => done())
+      .catch((err) => done(err));
+  });
+
+  afterAll((done) => {
+    db.close()
+      .then(() => done())
+      .catch((err) => done(err));
+  });
+
   beforeEach((done) => {
     Location.deleteMany({})
-      .then(() => done());
+      .then(() => done())
+      .catch((err) => done(err));
   });
+
+  // afterAll((done) => done());
 
   it('POST /api/v1/locations - should create a new Location', (done) => {
     request(server)
