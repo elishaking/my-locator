@@ -6,7 +6,8 @@ const cors = require('cors');
 const connectDB = require('./src/config/db');
 const checkFile = require('./src/utils/checkFile');
 
-dotenv.config({ path: './src/config/config.env' });
+if (process.env.NODE_ENV !== 'test')
+  dotenv.config({ path: './src/config/config.env' });
 
 connectDB();
 
@@ -28,3 +29,5 @@ server.get('*', (req, res) => {
 
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
+
+module.exports = server;
