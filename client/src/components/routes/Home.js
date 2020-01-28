@@ -14,6 +14,9 @@ export default class Home extends Component {
     this.getLocations();
   }
 
+  /**
+   * Fetch locations and load map
+   */
   getLocations = async () => {
     const res = await fetch('/api/v1/locations');
     const data = await res.json();
@@ -39,6 +42,10 @@ export default class Home extends Component {
     this.loadMap(locations);
   };
 
+  /**
+   * Get center of all locations
+   * @param {any[]} locations
+   */
   getLocationsCenter = (locations) => {
     const N = locations.length;
     if (N === 0) return [0, 0];
@@ -53,6 +60,10 @@ export default class Home extends Component {
     return [sum[0] / N, sum[1] / N];
   };
 
+  /**
+   * Load map with fetched locations
+   * @param {any[]} locations
+   */
   loadMap = (locations) => {
     const mapCenter = this.getLocationsCenter(locations);
 
