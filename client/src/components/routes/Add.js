@@ -8,12 +8,20 @@ export default class Add extends Component {
     loading: false
   };
 
+  /**
+   * Update form state onChange
+   * @param {React.ChangeEvent<HTMLInputElement>} e
+   */
   onChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
 
+  /**
+   * Submit new store data
+   * @param {React.FormEvent<HTMLFormElement>} e
+   */
   addStore = async (e) => {
     e.preventDefault();
 
