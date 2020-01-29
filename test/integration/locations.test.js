@@ -35,10 +35,7 @@ describe('Locations Controller Integration Test', () => {
     request(server)
       .post('/api/v1/locations')
       .send(locationTestData.location)
-      .end((err, res) => {
-        if (err)
-          console.error(err);
-
+      .then((res) => {
         expect(res.status).toEqual(200);
         expect(res.body).toHaveProperty('success');
         expect(res.body.success).toBe(true);
@@ -63,6 +60,11 @@ describe('Locations Controller Integration Test', () => {
         expect(typeof location.formattedAddress === 'string').toBe(true);
 
         done();
+      })
+      .catch((err) => {
+        console.log(err);
+
+        done(err);
       });
   });
 
@@ -72,10 +74,7 @@ describe('Locations Controller Integration Test', () => {
         request(server)
           .post('/api/v1/locations')
           .send(locationTestData.location)
-          .end((err, res) => {
-            if (err)
-              console.error(err);
-
+          .then((res) => {
             expect(res.status).toEqual(400);
             expect(res.body).toHaveProperty('success');
             expect(res.body.success).toBe(false);
@@ -84,6 +83,11 @@ describe('Locations Controller Integration Test', () => {
             expect(typeof data === 'undefined').toBe(true);
 
             done();
+          })
+          .catch((err) => {
+            console.log(err);
+
+            done(err);
           });
       });
   });
@@ -91,10 +95,7 @@ describe('Locations Controller Integration Test', () => {
   it('GET /api/v1/locations - should get all locations', (done) => {
     request(server)
       .get('/api/v1/locations')
-      .end((err, res) => {
-        if (err)
-          console.error(err);
-
+      .then((res) => {
         expect(res.status).toEqual(200);
         expect(res.body).toHaveProperty('success');
         expect(res.body.success).toBe(true);
@@ -102,6 +103,11 @@ describe('Locations Controller Integration Test', () => {
         expect(Array.isArray(res.body.data)).toBe(true);
 
         done();
+      })
+      .catch((err) => {
+        console.log(err);
+
+        done(err);
       });
   });
 });
